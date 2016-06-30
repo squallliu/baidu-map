@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <title></title>
+    <link href="../../ionic/css/ionic.css" rel="stylesheet">
+    <link href="../css/core.css" rel="stylesheet">
+    <link href="../css/baidu-map.css" rel="stylesheet">
+
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=DmMSdcEILbFTUHs4QvlcV2G0"></script>
+    <script src="../../jquery/dist/jquery.min.js"></script>
+
+    <script src="../../ionic/js/ionic.bundle.js"></script>
+
+    <script src="../core.js"></script>
+    <script src="../whcyit-baidu-map.js"></script>
+    <script type="text/javascript">
+      var demo = angular.module('demo', ['whcyit-baidu-map']);
+      demo.controller('demoCtrl', ['$scope',
+        function($scope) {
+            var longitude = 121.506191;
+            var latitude = 31.245554;
+            $scope.mapOptions = {
+                center: {
+                    lng: longitude,
+                    lat: latitude
+                },
+                zoom: 17,
+                city: 'ShangHai',
+                markers: [{
+                    lng: longitude,
+                    lat: latitude,
+                    icon: 'img/mappiont.png',
+                    size: {
+                      width: 49,
+                      height: 60
+                    },
+                    infoWindow: {
+                      title: 'Where',
+                      content: '<a href="http://www.baidu.com" target="_blank">Put description here</a>'
+                    }
+                }]
+            };
+        }
+      ]);
+    </script>
+  </head>
+  <body ng-app="demo" ng-controller="demoCtrl">
+    <cy-baidu-map  data-tap-disabled="true" options="mapOptions" style="width: 500px; height: 500px; display: block;"></cy-baidu-map>
+  </body>
+</html>
